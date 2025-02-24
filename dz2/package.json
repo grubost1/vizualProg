@@ -1,0 +1,12 @@
+{
+  "name": "dz2",
+  "version": "1.0.0",
+  "main": "orderBy.js",
+  "scripts": {
+    "test": "jest orderBy.test.js"
+  },
+  "keywords": [],
+  "author": "grubost1",
+  "license": "ISC",
+  "description": "Визуальное программирование и человеко-машинное взаимодействие | СибГУТИ | 4 семестр"
+}
