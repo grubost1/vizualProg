@@ -1,5 +1,5 @@
 function isPlainObject(value) {
-    return typeof value === 'object' && value !== null && !Array.isArray(value);
+    return typeof value == 'object' && value != null && !Array.isArray(value);
 }
 
 function orderBy(array, keys) {
@@ -7,7 +7,7 @@ function orderBy(array, keys) {
         throw new TypeError('Первый аргумент должен быть массивом');
     }
 
-    if (!Array.isArray(keys) || !keys.every(key => typeof key === 'string')) {
+    if (!Array.isArray(keys) || !keys.every(key => typeof key == 'string')) {
         throw new TypeError('Второй аргумент должен быть массивом строк');
     }
 
