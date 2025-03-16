@@ -1,51 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import ReactBook from './App';
 import loadData from './loadData';
-import getIsbn from './getIsbn'
+import BookList from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const massiv = await loadData();
+massiv.splice(16, 1);
+massiv.push({
+  "id": 17,
+  "title": "Distributed Application Development with PowerBuilder 6.0",
+  "isbn": "18847776866",
+  "pageCount": 504,
+  "authors": [
+    "Michael J. Barlotta"
+  ]
+});
 
-let massiv = await loadData();
+async function start() {
 
-function BookElement({ element }) {
-  const [coverName, setCoverName] = useState(null);
-
-  useEffect(() => {
-    async function fetchCover() {
-      const isbn = element.isbn;
-      if (isbn) {
-        const cover = await getIsbn(isbn);
-        setCoverName(cover);
-      }
-    }
-
-    fetchCover();
-  }, [element.isbn]);
-
-  return (
-    <ReactBook
-      cover_name={coverName}
-      name_book={element.title}
-      name_author={element.authors}
-    />
-  );
-}
-
-function renderBooks(massiv) {
-  const bookElements = massiv.map(element => (
-    <BookElement key={element.isbn} element={element} />
-  ));
-
+  const rootElement = document.getElementById('root');
+  const root = ReactDOM.createRoot(rootElement);
+  
   root.render(
-    <>
-      {bookElements}
-    </>
+    <BookList initialBooks={massiv} />
   );
 }
-
-renderBooks(massiv);
-
-
-
+start()

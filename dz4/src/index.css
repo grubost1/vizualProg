@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+body {
+  font-family: Consolas, monospace;
+  margin: 24px;
+  padding: 12px;
+}
+
+.Main {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+}
+
+.Book {
+  text-align: center;
+  margin: 24px;
+  padding: 12px;
+}
+
+img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 150px;
+  max-height: 150px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.NameBook {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  width: 50%;
+  font-weight: 700;
+  font-size: 18px;
+  max-width: 150px;
+}
+
+.AuthorusBook {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  width: 50%;
+  font-size: 14px;
+  max-width: 150px;
+}
