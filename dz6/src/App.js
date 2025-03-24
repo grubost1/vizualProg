@@ -38,13 +38,14 @@ function App() {
     const main = data.list[0].weather[0].main.toLowerCase();
     switch (main) {
       case 'clear':
-        return { backgroundImage: 'url(https://source.unsplash.com/random/?sunny)' };
+        //return { backgroundImage: 'url(https://source.unsplash.com/random/?sunny)' };
+        return { backgroundImage: 'url(https://images.unsplash.com/photo-1419833173245-f59e1b93f9ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)' };
       case 'clouds':
-        return { backgroundImage: 'url(https://source.unsplash.com/random/?cloudy)' };
+        return { backgroundImage: 'url(https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1951&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)' };
       case 'rain':
-        return { backgroundImage: 'url(https://source.unsplash.com/random/?rain)' };
+        return { backgroundImage: 'url(https://images.unsplash.com/photo-1507027682794-35e6c12ad5b4?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' };
       case 'snow':
-        return { backgroundImage: 'url(https://source.unsplash.com/random/?snow)' };
+        return { backgroundImage: 'url(https://images.unsplash.com/photo-1704642720431-6053974f40d7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)' };
       default:
         return {};
     }
