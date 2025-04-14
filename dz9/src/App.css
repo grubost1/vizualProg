@@ -1,0 +1,187 @@
+/* Фон всего приложения */
+.App {
+  text-align: center;
+  background-color: gray; /* Перламутровый белый цвет */
+  min-height: 100vh; /* Занимает всю высоту экрана */
+  padding: 20px; /* Добавляем отступы */
+}
+
+/* Контейнер с заголовком */
+.container h1 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: #333; /* Темно-серый текст для лучшей читаемости */
+}
+
+/* Логотип */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* Заголовок приложения */
+.App-header {
+  background-color: #f0f8ff; /* Сохраняем тот же перламутровый белый фон */
+  min-height: auto; /* Убираем фиксированную высоту */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #333; /* Темно-серый текст */
+}
+
+/* Ссылки */
+.App-link {
+  color: #61dafb;
+}
+
+/* Анимация логотипа */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Стили для выделенных ячеек */
+.data-table tbody td.cell-selected {
+  border: 2px solid rgb(66, 180, 233); /* Голубая рамка */
+  font-weight: bold;
+}
+
+/* Стили для таблицы */
+.data-table {
+  border-collapse: collapse;
+  margin-left: 10%;
+  width: 80%;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  background-color: white; /* Белый фон для таблицы */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Тень для отделения таблицы от фона */
+}
+
+/* Стили для заголовков таблицы */
+.data-table thead th {
+  border: 1px solid #ddd;
+  padding: 12px; /* Увеличиваем отступы для заголовков */
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+/* Стили для ячеек таблицы */
+.data-table tbody td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Увеличиваем отступы для ячеек */
+  text-align: left;
+  min-height: 40px; /* Минимальная высота ячеек */
+  vertical-align: middle; /* Выравнивание текста по центру по вертикали */
+}
+
+/* Стили для выделенных строк */
+.data-table tbody tr.selected {
+  background-color: #d1e7f3;
+}
+
+/* Стили для левой области выделения */
+.data-table tbody td.selection-area {
+  width: 30px; /* Устанавливаем фиксированную ширину */
+  text-align: center;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 4px; /* Оставляем маленькие отступы для ячеек с номерами строк */
+  min-height: 40px; /* Минимальная высота для ячеек с номерами строк */
+  vertical-align: middle; /* Выравнивание текста по центру по вертикали */
+}
+
+/* Стили для заголовка столбца "Выделение" */
+.data-table thead th.selection-header {
+  width: 30px; /* Устанавливаем фиксированную ширину */
+  text-align: center;
+  padding: 8px; /* Отступы для заголовка */
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+}
+
+/* General App Styles */
+body {
+margin: 0;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+background-color: #f4f7f6;
+}
+
+
+.app-container {
+display: flex;
+min-height: 100vh;
+}
+
+/* Navigation Styles */
+.navigation {
+width: 200px; /* Fixed width for nav */
+padding: 20px;
+background-color: #e9ecef;
+border-right: 1px solid #dee2e6;
+box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.navigation h3 {
+margin-top: 0;
+color: #495057;
+border-bottom: 1px solid #ced4da;
+padding-bottom: 10px;
+}
+
+.navigation ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.navigation li {
+margin-bottom: 10px;
+}
+
+.navigation a {
+text-decoration: none;
+color: #007bff;
+display: block;
+padding: 8px 10px;
+border-radius: 4px;
+transition: background-color 0.2s ease-in-out;
+}
+
+.navigation a:hover,
+.navigation a.active { /* Style for active link if using NavLink */
+background-color: #007bff;
+color: white;
+}
+
+/* Content Area Styles */
+.content {
+flex-grow: 1; /* Takes remaining space */
+padding: 20px;
+overflow-x: auto; /* Add horizontal scroll if content overflows */
+}
+
+.content h2 {
+color: #343a40;
+border-bottom: 2px solid #007bff;
+padding-bottom: 5px;
+margin-top: 0; /* Remove default top margin for h2 */
+}

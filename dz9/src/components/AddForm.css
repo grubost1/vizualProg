@@ -1,0 +1,104 @@
+/* src/components/AddForm.css */
+.add-form {
+    border: 1px solid #dee2e6; /* Lighter border */
+    padding: 20px;
+    margin-top: 20px; /* Add space above form */
+    margin-bottom: 30px; /* Increase space below form */
+    border-radius: 8px; /* Slightly larger radius */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  }
+  
+  .add-form h3 {
+    margin-top: 0;
+    margin-bottom: 20px; /* More space below heading */
+    text-align: left; /* Align heading left */
+    color: #495057; /* Darker heading color */
+    font-size: 1.25em;
+    border-bottom: 1px solid #e9ecef; /* Separator line */
+    padding-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px; /* More space below label */
+    font-weight: 600; /* Slightly bolder label */
+    color: #495057;
+    font-size: 0.95em;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px 12px; /* Slightly larger padding */
+    border: 1px solid #ced4da; /* Standard border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .form-check-input { /* Specific styling for checkboxes */
+    margin-left: 0; /* Align with labels */
+    margin-right: 10px;
+    margin-top: 5px; /* Adjust vertical alignment */
+    width: auto;
+    vertical-align: middle;
+  }
+  
+  /* Make checkbox label inline */
+  .form-group label[for*="completed"] { /* Target label specifically */
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+  
+  
+  .form-control.is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .form-control.is-invalid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+  
+  
+  .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 5px;
+    display: block; /* Ensure it takes space */
+  }
+  
+  .submit-button {
+    background-color: #007bff; /* Change to Blue */
+    color: white;
+    padding: 10px 20px; /* Adjust padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    display: inline-block; /* Allow other elements beside it if needed */
+    width: auto; /* Reset width */
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 10px; /* Add space above button */
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3; /* Change to Darker Blue */
+  }
+  
+  .submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  } 
