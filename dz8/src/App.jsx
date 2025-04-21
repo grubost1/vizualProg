@@ -40,7 +40,7 @@ function App() {
 
   // Загрузка данных с сервера
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/comments')
+    fetch('http://localhost:5063/comments') // Бэкенд API
       .then((response) => response.json())
       .then((data) => dispatch({ type: 'SET_COMMENTS', payload: data }))
       .catch((error) => dispatch({ type: 'SET_ERROR', payload: error.message }));
@@ -48,17 +48,12 @@ function App() {
 
   // Добавление нового комментария
   const handleAddComment = (newComment) => {
-    // Находим максимальный ID в текущих данных
     const maxId = state.comments.length > 0 ? Math.max(...state.comments.map((item) => item.id)) : 0;
-
-    // Создаем новый комментарий с уникальным ID
     const optimisticComment = { ...newComment, id: maxId + 1 };
 
-    // Добавляем комментарий оптимистически
     dispatch({ type: 'ADD_COMMENT', payload: optimisticComment });
 
-    // Отправляем данные на сервер
-    fetch('https://jsonplaceholder.typicode.com/comments', {
+    fetch('http://localhost:5063/comments', {
       method: 'POST',
       body: JSON.stringify(newComment),
       headers: {
@@ -72,12 +67,10 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        // Обновляем комментарий после успешного ответа от сервера
         dispatch({ type: 'UPDATE_COMMENT', payload: { ...data, id: optimisticComment.id } });
       })
       .catch((error) => {
         console.error(error);
-        // Удаляем оптимистический комментарий в случае ошибки
         dispatch({
           type: 'DELETE_COMMENTS',
           payload: [optimisticComment.id],
@@ -88,8 +81,8 @@ function App() {
   // Обновление комментария
   const handleUpdateComment = (updatedComment) => {
     dispatch({ type: 'UPDATE_COMMENT', payload: updatedComment });
-
-    fetch(`https://jsonplaceholder.typicode.com/comments/${updatedComment.id}`, {
+  
+    fetch(`http://localhost:5063/comments/${updatedComment.id}`, {
       method: 'PATCH',
       body: JSON.stringify(updatedComment),
       headers: {
@@ -100,10 +93,16 @@ function App() {
         if (!response.ok) {
           throw new Error('Ошибка при обновлении комментария');
         }
+        // Если статус 204 (No Content), возвращаем null
+        if (response.status === 204) {
+          return null;
+        }
         return response.json();
       })
       .then((data) => {
-        dispatch({ type: 'UPDATE_COMMENT', payload: data });
+        // Если ответ null, используем отправленный объект
+        const updatedData = data || updatedComment;
+        dispatch({ type: 'UPDATE_COMMENT', payload: updatedData });
       })
       .catch((error) => {
         console.error(error);
@@ -116,8 +115,8 @@ function App() {
     dispatch({ type: 'DELETE_COMMENTS', payload: selectedIds });
 
     selectedIds.forEach((id) => {
-      if (typeof id !== 'number') return; // Пропускаем временные комментарии
-      fetch(`https://jsonplaceholder.typicode.com/comments/${id}`, {
+      if (typeof id !== 'number') return;
+      fetch(`http://localhost:5063/comments/${id}`, {
         method: 'DELETE',
       }).catch((error) => {
         console.error(error);
@@ -129,14 +128,14 @@ function App() {
   // Заголовки таблицы
   const headers = [
     { property: 'id', label: 'ID' },
-    { property: 'name', label: 'Имя' },
-    { property: 'email', label: 'Email' },
-    { property: 'body', label: 'Комментарий' },
+    { property: 'text', label: 'Текст' },
+    { property: 'author', label: 'Автор' },
+    { property: 'email', label: 'Email' }, // Новый заголовок
   ];
 
   return (
     <div className="App">
-      <h1>Comments</h1>
+      <h1>DataApp</h1>
       {state.loading ? (
         <p>Loading...</p>
       ) : state.error ? (

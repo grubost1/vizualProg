@@ -1,0 +1,6 @@
+@dz10_HostAddress = http://localhost:5063
+
+GET {{dz10_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -10,9 +10,9 @@ const DataSet = ({
   renderHeader = (header) => header.label || header.property,
 }) => {
   const [selectedRows, setSelectedRows] = useState([]);
-  const [editingRow, setEditingRow] = useState(null); // Индекс строки для редактирования
-  const [editedData, setEditedData] = useState({}); // Хранение изменяемых данных
-  const [newComment, setNewComment] = useState({ name: '', email: '', body: '' });
+  const [editingRow, setEditingRow] = useState(null);
+  const [editedData, setEditedData] = useState({});
+  const [newComment, setNewComment] = useState({ author: '', email: '', text: '' });
 
   // Обработчик клика по строке
   const handleRowClick = (index, event) => {
@@ -32,19 +32,6 @@ const DataSet = ({
   // Проверка, является ли строка выделенной
   const isSelected = (index) => selectedRows.includes(index);
 
-  // Получение заголовков столбцов
-  const getHeaders = () => {
-    if (headers && headers.length > 0) {
-      return headers;
-    }
-
-    if (data && data.length > 0) {
-      return Object.keys(data[0]).map((key) => ({ property: key }));
-    }
-
-    return [];
-  };
-
   // Начало редактирования строки
   const startEditing = (rowIndex) => {
     setEditingRow(rowIndex);
@@ -60,7 +47,13 @@ const DataSet = ({
   // Сохранение изменений
   const saveChanges = () => {
     if (onUpdate && editingRow !== null) {
-      onUpdate(editedData);
+      const updatedComment = {
+        id: data[editingRow].id, // ID должен быть взят из текущего комментария
+        text: editedData.text || '', // Убедитесь, что поле text присутствует
+        author: editedData.author || '', // Убедитесь, что поле author присутствует
+        email: editedData.email || '', // Убедитесь, что поле email присутствует
+      };
+      onUpdate(updatedComment);
       setEditingRow(null);
       setEditedData({});
     }
@@ -69,20 +62,13 @@ const DataSet = ({
   // Обработчик отправки нового комментария
   const handleAddComment = () => {
     if (onAdd) {
-      // Находим максимальный ID в текущих данных
       const maxId = data.length > 0 ? Math.max(...data.map((item) => item.id)) : 0;
-
-      // Создаем новый комментарий с уникальным ID
       const newCommentWithId = {
-        id: maxId + 1, // Новый ID на 1 больше максимального
+        id: maxId + 1,
         ...newComment,
       };
-
-      // Вызываем функцию onAdd с новым комментарием
       onAdd(newCommentWithId);
-
-      // Очищаем форму
-      setNewComment({ name: '', email: '', body: '' });
+      setNewComment({ author: '', email: '', text: '' });
     }
   };
 
@@ -101,7 +87,7 @@ const DataSet = ({
         <thead>
           <tr>
             <th className="selectableArea"></th>
-            {getHeaders().map((header, index) => (
+            {headers.map((header, index) => (
               <th key={index}>{renderHeader(header)}</th>
             ))}
             <th>Действия</th>
@@ -115,7 +101,7 @@ const DataSet = ({
               className={isSelected(rowIndex) ? 'selected' : ''}
             >
               <td className="selectableArea">{isSelected(rowIndex) ? '✓' : ''}</td>
-              {getHeaders().map((header, colIndex) => (
+              {headers.map((header, colIndex) => (
                 <td key={colIndex}>
                   {editingRow === rowIndex ? (
                     <input
@@ -152,10 +138,10 @@ const DataSet = ({
       <div className="form">
         <input
           type="text"
-          placeholder="Имя"
-          value={newComment.name}
+          placeholder="Автор"
+          value={newComment.author}
           onChange={(e) =>
-            setNewComment({ ...newComment, name: e.target.value })
+            setNewComment({ ...newComment, author: e.target.value })
           }
         />
         <input
@@ -168,9 +154,9 @@ const DataSet = ({
         />
         <textarea
           placeholder="Комментарий"
-          value={newComment.body}
+          value={newComment.text}
           onChange={(e) =>
-            setNewComment({ ...newComment, body: e.target.value })
+            setNewComment({ ...newComment, text: e.target.value })
           }
         />
         <button onClick={handleAddComment}>Добавить</button>
