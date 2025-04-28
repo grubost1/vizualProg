@@ -1,6 +1,6 @@
-using CommentApi.Models;
+using Homework_11.Models;
 
-namespace CommentApi.Repositories
+namespace Homework_11.Repositories
 {
     public interface ICommentRepository
     {

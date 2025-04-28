@@ -1,12 +1,18 @@
-using CommentApi.Models;
-using CommentApi.Repositories;
-using CommentApi.Services;
+using Homework_11.Data;
+using Homework_11.Models;
+using Homework_11.Repositories;
+using Homework_11.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<ICommentRepository, CommentRepository>();
-builder.Services.AddSingleton<CommentService>();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ICommentRepository, PostgresCommentRepository>();
+builder.Services.AddScoped<CommentService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>

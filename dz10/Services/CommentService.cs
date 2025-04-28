@@ -1,7 +1,7 @@
-using CommentApi.Models;
-using CommentApi.Repositories;
+using Homework_11.Models;
+using Homework_11.Repositories;
 
-namespace CommentApi.Services
+namespace Homework_11.Services
 {
     public class CommentService
     {
