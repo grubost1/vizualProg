@@ -40,7 +40,7 @@ function App() {
 
   // Загрузка данных с сервера
   useEffect(() => {
-    fetch('http://localhost:5063/comments') // Бэкенд API
+    fetch('http://localhost:5022/comments') // Бэкенд API
       .then((response) => response.json())
       .then((data) => dispatch({ type: 'SET_COMMENTS', payload: data }))
       .catch((error) => dispatch({ type: 'SET_ERROR', payload: error.message }));
@@ -53,7 +53,7 @@ function App() {
 
     dispatch({ type: 'ADD_COMMENT', payload: optimisticComment });
 
-    fetch('http://localhost:5063/comments', {
+    fetch('http://localhost:5022/comments', {
       method: 'POST',
       body: JSON.stringify(newComment),
       headers: {
@@ -82,7 +82,7 @@ function App() {
   const handleUpdateComment = (updatedComment) => {
     dispatch({ type: 'UPDATE_COMMENT', payload: updatedComment });
   
-    fetch(`http://localhost:5063/comments/${updatedComment.id}`, {
+    fetch(`http://localhost:5022/comments/${updatedComment.id}`, {
       method: 'PATCH',
       body: JSON.stringify(updatedComment),
       headers: {
@@ -116,7 +116,7 @@ function App() {
 
     selectedIds.forEach((id) => {
       if (typeof id !== 'number') return;
-      fetch(`http://localhost:5063/comments/${id}`, {
+      fetch(`http://localhost:5022/comments/${id}`, {
         method: 'DELETE',
       }).catch((error) => {
         console.error(error);
